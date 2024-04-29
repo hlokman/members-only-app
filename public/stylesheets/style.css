@@ -1,0 +1,39 @@
+body {
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  color: #00b7ff;
+}
+
+header {
+  display: flex;
+  padding: 20px;
+  background-color: rgb(103, 103, 255);
+  box-shadow: 0px 0px 9px black;
+  align-items: center;
+}
+.logo {
+  margin-right: auto;
+  font-weight: 900;
+  font-size: 1.5rem;
+}
+header button {
+  background: none;
+  color: inherit;
+  border: none;
+  cursor: pointer;
+  color: white;
+}
+.navbar button {
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
