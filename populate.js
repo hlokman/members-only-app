@@ -169,5 +169,12 @@ async function createMessages() {
       "I WILL OVERTAKE THE WORLD",
       users[4]
     ),
+    messageCreate(
+      5,
+      "LoL",
+      new Date("February 1, 2024 14:58:21"),
+      "That's funny!",
+      users[5]
+    ),
   ]);
 }
