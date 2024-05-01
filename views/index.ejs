@@ -10,6 +10,29 @@
     <%- include('./partials/header.ejs') %>
     <main>
       <h1>Posts</h1>
+      <section class="posts">
+        <% messages.forEach(function(message) {%>
+
+        <div class="post">
+          <div class="postInfo">
+            <img src="/images/profile.jpeg" alt="" />
+            <div class="username_date">
+              <% if (typeof user === 'undefined') { %>
+              <h2>Anonymous</h2>
+              <p>Membership required to see the user</p>
+              <% } else {%>
+              <h2><%= message.user.username %></h2>
+              <p><%= message.formatted_date %></p>
+              <% }%>
+            </div>
+          </div>
+          <div class="postText">
+            <h2><%= message.title %></h2>
+            <p><%= message.text %></p>
+          </div>
+        </div>
+        <% })%>
+      </section>
     </main>
   </body>
 </html>

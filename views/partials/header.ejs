@@ -1,12 +1,12 @@
 <header>
   <button class="logo">ClubHouse</button>
   <nav class="navbar">
-    <button>Posts</button>
+    <button><a href="/">Posts</a></button>
     <% if (typeof user !== 'undefined') { %>
     <button>Dashboard</button>
     <button>Logout</button>
     <% } else { %>
-    <button>Login</button>
+    <button><a href="/login">Login</a></button>
     <button>Register</button>
     <% } %>
   </nav>
