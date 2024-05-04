@@ -8,10 +8,10 @@
   </head>
   <body>
     <%- include('./partials/header.ejs') %>
-    <main>
+    <main class="mainCreateForm">
       <h1>Login</h1>
       <div class="formDiv">
-        <form class="loginForm" action="" method="post">
+        <form class="loginForm" action="/login" method="post">
           <div class="identifierPart">
             <img src="/images/profile.svg" alt="" />
             <div class="identifierInput">
@@ -24,10 +24,16 @@
             <img src="/images/lock.svg" alt="" />
             <div class="passwordInput">
               <label for="password">Password:</label>
-              <input type="password" name="password" id="apssword" />
+              <input type="password" name="password" id="password" />
             </div>
           </div>
+          <button class="loginBtnSubmit" type="submit">Login</button>
         </form>
+        <% if (message) {%>
+        <div class="errorMessages">
+          <p><%= message %></p>
+        </div>
+        <% } %>
       </div>
     </main>
   </body>

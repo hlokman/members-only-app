@@ -4,9 +4,9 @@ body {
   padding: 0;
 }
 
-a {
+/*a {
   color: #00b7ff;
-}
+}*/
 
 header {
   display: flex;
@@ -27,6 +27,9 @@ header button {
   cursor: pointer;
   color: white;
 }
+header a {
+  color: white;
+}
 .navbar button {
   font-weight: 700;
   font-size: 1rem;
@@ -34,10 +37,11 @@ header button {
 
 a {
   text-decoration: none;
-  color: white;
+  /*color: white;*/
 }
 
-main {
+.mainCreateForm,
+.mainHome {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -53,7 +57,8 @@ main {
   gap: 15px;
 }
 
-.post {
+.post,
+.postDashboard {
   border: 1px solid rgb(196, 196, 196);
   padding: 10px;
   border-radius: 5px;
@@ -69,6 +74,9 @@ main {
   }
   .post {
     width: 90%;
+  }
+  .postDashboard {
+    width: 100%;
   }
 }
 
@@ -173,4 +181,72 @@ input {
   display: flex;
   flex-direction: column;
   flex-grow: 1;
+}
+
+button[type="submit"] {
+  color: white;
+  background-color: rgb(103, 103, 255);
+  font-weight: 600;
+  margin-top: 10px;
+  margin-bottom: -10px;
+  border: none;
+  border-radius: 5px;
+  width: 80px;
+  height: 25px;
+  align-self: center;
+}
+
+.mainDashboard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.containerMain {
+  width: 75%;
+}
+.membershipStatus {
+  font-size: 1rem;
+}
+.welcome {
+  margin-bottom: -5px;
+  font-size: 1.2rem;
+}
+.active {
+  color: green;
+}
+.inactive {
+  color: red;
+}
+
+.buttonsDashboard button {
+  border: none;
+  padding: 8px;
+  padding-left: 10px;
+  padding-right: 10px;
+  background-color: rgb(103, 103, 255);
+  border-radius: 5px;
+}
+.buttonsDashboard button:hover {
+  opacity: 90%;
+}
+.buttonsDashboard a {
+  color: white;
+  font-weight: 600;
+}
+
+.userPosts {
+  margin-top: 50px;
+}
+.userPosts > h2 {
+  margin-bottom: 0px;
+}
+
+.dahsboardPosts {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
 }

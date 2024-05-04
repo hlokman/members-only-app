@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <title><%= title %></title>
+  </head>
+  <body>
+    <%- include('./partials/header.ejs') %>
+    <main class="mainDashboard">
+      <div class="containerMain">
+        <h1>Dashboard</h1>
+        <p class="welcome">
+          <strong>Welcome <%= user.usernameDisplayed%></strong>
+        </p>
+        <% if (user.membership) { %>
+        <p class="membershipStatus">
+          <strong>Membership Status:</strong> <span class="active">Active</span>
+        </p>
+        <% } else {%>
+        <p class="membershipStatus">
+          <strong>Membership Status:</strong>
+          <span class="inactive">Inactive</span>
+        </p>
+        <%}%>
+        <div class="buttonsDashboard">
+          <button><a href="">Activate Membership</a></button>
+          <button><a href="">Create Post</a></button>
+          <button><a href="/logout">Logout</a></button>
+        </div>
+
+        <div class="userPosts">
+          <h2>Your Posts</h2>
+          <hr />
+          <div class="dahsboardPosts">
+            <section class="posts">
+              <% messages.forEach(function(message) {%>
+
+              <div class="postDashboard">
+                <div class="postInfo">
+                  <img src="/images/profile.jpeg" alt="" />
+                  <div class="username_date">
+                    <% if (typeof user === 'undefined') { %>
+                    <h2>Anonymous</h2>
+                    <p>Membership required to see the user</p>
+                    <% } else {%>
+                    <h2><%= message.user.username %></h2>
+                    <p><%= message.formatted_date %></p>
+                    <% }%>
+                  </div>
+                </div>
+                <div class="postText">
+                  <h2><%= message.title %></h2>
+                  <p><%= message.text %></p>
+                </div>
+              </div>
+              <% })%>
+            </section>
+          </div>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>

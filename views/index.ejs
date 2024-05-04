@@ -8,7 +8,7 @@
   </head>
   <body>
     <%- include('./partials/header.ejs') %>
-    <main>
+    <main class="mainHome">
       <h1>Posts</h1>
       <section class="posts">
         <% messages.forEach(function(message) {%>
@@ -17,7 +17,7 @@
           <div class="postInfo">
             <img src="/images/profile.jpeg" alt="" />
             <div class="username_date">
-              <% if (typeof user === 'undefined') { %>
+              <% if (!user) { %>
               <h2>Anonymous</h2>
               <p>Membership required to see the user</p>
               <% } else {%>
