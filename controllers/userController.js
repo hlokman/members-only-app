@@ -4,6 +4,7 @@ const User = require("../models/user");
 const session = require("express-session");
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
+const { body, validationResult } = require("express-validator");
 
 exports.user_login_form_get = async (req, res, next) => {
   try {
@@ -114,3 +115,90 @@ exports.user_dashboard = async (req, res, next) => {
 
   console.log(req.session);
 };
+
+exports.user_register_form_get = (req, res, next) => {
+  res.render("register", { title: "Register", user: req.user });
+};
+
+exports.user_register_form_post = [
+  body("first_name", "The First Name must be between 1 and 25 characters")
+    .trim()
+    .isLength({ min: 1, max: 25 })
+    .escape(),
+  body("last_name", "The Last Name must be between 1 and 25 characters")
+    .trim()
+    .isLength({ min: 1, max: 25 })
+    .escape(),
+  body("username", "The Username must be between 1 and 25 characters")
+    .trim()
+    .isLength({ min: 1, max: 25 })
+    .escape(),
+  body("email", "You must add a valid email").trim().isEmail().escape(),
+  body("password", "The password must contain at least 6 characters")
+    .trim()
+    .isLength({ min: 6 })
+    .escape(),
+  body("confirm_password", "The passwords do not match")
+    .trim()
+    .custom((value, { req }) => {
+      if (value !== req.body.password) {
+        return false;
+      }
+      return true;
+    }),
+
+  async (req, res, next) => {
+    try {
+      const errors = validationResult(req);
+
+      const user = new User({
+        first_name: req.body.first_name,
+        last_name: req.body.last_name,
+        username: req.body.username,
+        email: req.body.email,
+        password: await bcrypt.hash(req.body.password, 10),
+      });
+
+      if (!errors.isEmpty()) {
+        /*console.log(
+          "password: " + req.body.password,
+          "confirm: " + req.body.confirm_password
+        );*/
+        //console.log(errors.array());
+        res.render("register", {
+          title: "Register",
+          userRegistered: user,
+          errors: errors.array(),
+        });
+        return;
+      } else {
+        //No errors from the form, then we check if username or email is already used (separate logic here)
+        const usernameAlreadyExists = await User.findOne({
+          username: req.body.username,
+        }).exec();
+        const emailAlreadyExists = await User.findOne({
+          email: req.body.email,
+        }).exec();
+
+        if (usernameAlreadyExists) {
+          res.render("register", {
+            title: "Register",
+            userRegistered: user,
+            errors: [{ msg: "The username is already in use" }],
+          });
+        } else if (emailAlreadyExists) {
+          res.render("register", {
+            title: "Register",
+            userRegistered: user,
+            errors: [{ msg: "The email is already in use" }],
+          });
+        } else {
+          await user.save();
+          res.redirect("/login");
+        }
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  },
+];

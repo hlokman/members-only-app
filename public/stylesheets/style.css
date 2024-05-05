@@ -131,7 +131,8 @@ a {
   width: 26rem;
   gap: 15px;
 }
-.loginForm {
+.loginForm,
+.registerForm {
   background-color: rgb(243, 243, 243);
   padding: 30px;
   border-radius: 5px;
@@ -144,7 +145,8 @@ a {
   .formDiv {
     width: 100%;
   }
-  .loginForm {
+  .loginForm,
+  .registerForm {
     width: 80%;
   }
 }
@@ -249,4 +251,32 @@ button[type="submit"] {
   align-items: center;
   justify-content: center;
   padding: 20px;
+}
+
+.namesPart {
+  display: flex;
+  gap: 10px;
+}
+@media screen and (max-width: 510px) {
+  .namesPart {
+    flex-direction: column;
+  }
+  .passwordPartRegister {
+    flex-direction: column;
+  }
+}
+.passwordPartRegister {
+  display: flex;
+
+  gap: 10px;
+}
+.passwordInputRegister,
+.confirmPasswordInputRegister,
+.usernameInput,
+.emailInput,
+.first_nameInput,
+.last_nameInput {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
 }

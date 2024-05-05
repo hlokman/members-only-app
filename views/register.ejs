@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <title><%= title %></title>
+  </head>
+  <body>
+    <%- include('./partials/header.ejs') %>
+    <main class="mainCreateForm">
+      <h1>Register</h1>
+      <div class="formDiv">
+        <form class="registerForm" action="/register" method="post">
+          <div class="namesPart">
+            <div class="first_nameInput">
+              <label for="first_name">First Name:</label>
+              <input
+                type="text"
+                name="first_name"
+                id="first_name"
+                minlength="1"
+                maxlength="25"
+                value="<%= typeof userRegistered === 'undefined' ? '' : userRegistered.first_name %>"
+              />
+            </div>
+            <div class="last_nameInput">
+              <label for="last_name">Last Name:</label>
+              <input
+                type="text"
+                name="last_name"
+                id="last_name"
+                minlength="1"
+                maxlength="25"
+                value="<%= typeof userRegistered === 'undefined' ? '' : userRegistered.last_name %>"
+              />
+            </div>
+          </div>
+
+          <div class="usernamePart">
+            <div class="usernameInput">
+              <label for="username">Username:</label>
+              <input
+                type="text"
+                name="username"
+                id="username"
+                minlength="1"
+                maxlength="25"
+                value="<%= typeof userRegistered === 'undefined' ? '' : userRegistered.username %>"
+              />
+            </div>
+          </div>
+
+          <div class="emailPart">
+            <div class="emailInput">
+              <label for="email">Email:</label>
+              <input
+                type="email"
+                name="email"
+                id="email"
+                value="<%= typeof userRegistered === 'undefined' ? '' : userRegistered.email %>"
+              />
+            </div>
+          </div>
+
+          <div class="passwordPartRegister">
+            <div class="passwordInputRegister">
+              <label for="password">Password:</label>
+              <input
+                type="password"
+                name="password"
+                id="password"
+                minlength="6"
+              />
+            </div>
+            <div class="confirmPasswordInputRegister">
+              <label for="confirm_password">Confirm Password:</label>
+              <input
+                type="password"
+                name="confirm_password"
+                id="confirm_password"
+                minlength="6"
+              />
+            </div>
+          </div>
+          <button class="loginBtnSubmit" type="submit">Create</button>
+        </form>
+
+        <% if (typeof errors !== "undefined") {%>
+        <ul>
+          <% errors.forEach((error) => {%>
+          <li><%=error.msg%></li>
+          <%})%>
+        </ul>
+        <%}%>
+      </div>
+    </main>
+  </body>
+</html>
