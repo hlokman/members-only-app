@@ -25,7 +25,7 @@
         </p>
         <%}%>
         <div class="buttonsDashboard">
-          <button><a href="">Activate Membership</a></button>
+          <button><a href="/membership">Activate Membership</a></button>
           <button><a href="">Create Post</a></button>
           <button><a href="/logout">Logout</a></button>
         </div>
@@ -35,8 +35,9 @@
           <hr />
           <div class="dahsboardPosts">
             <section class="posts">
-              <% messages.forEach(function(message) {%>
-
+              <% if (messages.length === 0) {%>
+              <h2 class="emptyPostDashboard">No posts yet</h2>
+              <% } else { %> <% messages.forEach(function(message) {%>
               <div class="postDashboard">
                 <div class="postInfo">
                   <img src="/images/profile.jpeg" alt="" />
@@ -55,7 +56,7 @@
                   <p><%= message.text %></p>
                 </div>
               </div>
-              <% })%>
+              <% })%> <% }%>
             </section>
           </div>
         </div>

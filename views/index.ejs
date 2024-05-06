@@ -17,7 +17,7 @@
           <div class="postInfo">
             <img src="/images/profile.jpeg" alt="" />
             <div class="username_date">
-              <% if (!user) { %>
+              <% if (!user || user.membership === false) { %>
               <h2>Anonymous</h2>
               <p>Membership required to see the user</p>
               <% } else {%>

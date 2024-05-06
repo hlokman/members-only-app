@@ -202,3 +202,9 @@ exports.user_register_form_post = [
     }
   },
 ];
+
+exports.user_membershipForm_get = (req, res, next) => {
+  res.render("membership", { title: "Activate membership" });
+};
+
+exports.user_membershipForm_post = (req, res, next) => {};

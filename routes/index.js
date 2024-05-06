@@ -18,4 +18,8 @@ router.get("/register", userController.user_register_form_get);
 
 router.post("/register", userController.user_register_form_post);
 
+router.get("/membership", userController.user_membershipForm_get);
+
+router.post("/membership", userController.user_membershipForm_post);
+
 module.exports = router;
