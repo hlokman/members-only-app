@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <title><%= title %></title>
+  </head>
+  <body>
+    <%- include('./partials/header.ejs') %>
+    <main class="mainCreateForm">
+      <h1>Create a Post</h1>
+      <div class="formDiv">
+        <form class="createPostForm" action="/create_post" method="post">
+          <div class="titlePart">
+            <label for="title">Title:</label>
+            <input
+              type="text"
+              name="title"
+              id="title"
+              value="<%= typeof post === 'undefined' ? '' : post.title %>"
+            />
+          </div>
+
+          <div class="postPart">
+            <label for="post">Post:</label>
+            <textarea name="post" id="post" maxlength="280">
+<%= typeof post === 'undefined' ? '' : post.text %></textarea
+            >
+          </div>
+          <button type="submit">Create</button>
+        </form>
+        <% if (typeof errors !== "undefined") {%>
+        <ul>
+          <% errors.forEach((error) => {%>
+          <li><%=error.msg%></li>
+          <%})%>
+        </ul>
+        <%}%>
+      </div>
+    </main>
+  </body>
+</html>

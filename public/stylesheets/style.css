@@ -123,6 +123,26 @@ a {
   margin-top: 0px;
   margin-bottom: -10px;
 }
+.adminBtn {
+  display: flex;
+  justify-content: end;
+}
+.adminBtn button {
+  border-radius: 5px;
+
+  border: none;
+  cursor: pointer;
+  background-color: rgb(255, 199, 199);
+  margin-right: 5px;
+}
+.adminBtn a {
+  display: flex;
+}
+.adminBtn img {
+  width: 20px;
+  object-fit: cover;
+  border: none;
+}
 
 .postText p {
 }
@@ -135,7 +155,8 @@ a {
   gap: 15px;
 }
 .loginForm,
-.registerForm {
+.registerForm,
+.createPostForm {
   background-color: rgb(243, 243, 243);
   padding: 30px;
   border-radius: 5px;
@@ -149,7 +170,8 @@ a {
     width: 100%;
   }
   .loginForm,
-  .registerForm {
+  .registerForm,
+  .createPostForm {
     width: 80%;
   }
 }
@@ -182,10 +204,21 @@ input {
   gap: 11px;
 }
 .identifierInput,
-.passwordInput {
+.passwordInput,
+.titlePart,
+.postPart {
   display: flex;
   flex-direction: column;
   flex-grow: 1;
+}
+
+#post {
+  resize: none;
+  border: 1px solid rgb(255, 255, 255);
+  box-shadow: 0px 1px 3px 0px rgb(180, 180, 180);
+  padding: 7px;
+  font-size: 1rem;
+  height: 9rem;
 }
 
 button[type="submit"] {
@@ -201,17 +234,28 @@ button[type="submit"] {
   align-self: center;
 }
 
-.mainDashboard,
-.containerMain {
+.mainDashboard {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 }
-
 .containerMain {
   width: 75%;
 }
+
+.mainMembership,
+.mainAdmin {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.containerMainMembership,
+.containerMainAdmin {
+  width: 75%;
+}
+
 .membershipStatus {
   font-size: 1rem;
 }
@@ -226,6 +270,11 @@ button[type="submit"] {
   color: red;
 }
 
+.buttonsDashboard {
+  display: flex;
+  gap: 3px;
+  flex-wrap: wrap;
+}
 .buttonsDashboard button {
   border: none;
   padding: 8px;
@@ -233,6 +282,16 @@ button[type="submit"] {
   padding-right: 10px;
   background-color: rgb(103, 103, 255);
   border-radius: 5px;
+}
+.buttonsDashboard .adminButton {
+  border: none;
+  padding: 8px;
+  padding-left: 10px;
+  padding-right: 10px;
+  background-color: rgb(0, 150, 10);
+  border-radius: 5px;
+  color: white;
+  font-weight: 600;
 }
 .buttonsDashboard button:hover {
   opacity: 90%;
@@ -285,6 +344,7 @@ button[type="submit"] {
   flex-grow: 1;
 }
 
-.membershipForm > input {
+.membershipForm > input,
+.adminForm > input {
   display: block;
 }

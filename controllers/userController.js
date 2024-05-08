@@ -11,7 +11,7 @@ exports.user_login_form_get = async (req, res, next) => {
     const message = req.session.messages || [];
     req.session.messages = [];
 
-    res.render("user_create_form", {
+    res.render("user_login_form", {
       title: "Login",
       message: message[0],
       user: req.user,
@@ -114,6 +114,7 @@ exports.user_dashboard = async (req, res, next) => {
   }
 
   console.log(req.session);
+  console.log("user: " + req.user);
 };
 
 exports.user_register_form_get = (req, res, next) => {
@@ -204,7 +205,44 @@ exports.user_register_form_post = [
 ];
 
 exports.user_membershipForm_get = (req, res, next) => {
-  res.render("membership", { title: "Activate membership" });
+  res.render("membership", { title: "Activate membership", user: req.user });
 };
 
-exports.user_membershipForm_post = (req, res, next) => {};
+exports.user_membershipForm_post = async (req, res, next) => {
+  try {
+    if (req.body.membershipPass === process.env.MEMBERSHIP) {
+      await User.findByIdAndUpdate(req.user.id, { membership: true });
+      console.log(req.user);
+      res.redirect("/dashboard");
+    } else {
+      res.render("membership", {
+        title: "Activate membership",
+        user: req.user,
+        error: true,
+      });
+    }
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+exports.user_adminForm_get = (req, res, next) => {
+  res.render("admin", { title: "Activate Admin", user: req.user });
+};
+
+exports.user_adminForm_post = async (req, res, next) => {
+  try {
+    if (req.body.adminPass === process.env.ADMIN) {
+      await User.findByIdAndUpdate(req.user.id, { isAdmin: true });
+      res.redirect("/dashboard");
+    } else {
+      res.render("admin", {
+        title: "Activate Admin",
+        user: req.user,
+        error: true,
+      });
+    }
+  } catch (err) {
+    console.log(err);
+  }
+};

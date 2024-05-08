@@ -17,7 +17,7 @@
           <div class="postInfo">
             <img src="/images/profile.jpeg" alt="" />
             <div class="username_date">
-              <% if (!user || user.membership === false) { %>
+              <% if (!user || !user.membership) { %>
               <h2>Anonymous</h2>
               <p>Membership required to see the user</p>
               <% } else {%>
@@ -30,6 +30,15 @@
             <h2><%= message.title %></h2>
             <p><%= message.text %></p>
           </div>
+          <% if (user && user.isAdmin) {%>
+          <div class="adminBtn">
+            <button>
+              <a href="/dashboard"
+                ><img src="/images/trash.svg" alt="trash icon"
+              /></a>
+            </button>
+          </div>
+          <% } %>
         </div>
         <% })%>
       </section>

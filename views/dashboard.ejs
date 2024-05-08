@@ -25,8 +25,16 @@
         </p>
         <%}%>
         <div class="buttonsDashboard">
+          <% if (!user.membership) {%>
           <button><a href="/membership">Activate Membership</a></button>
-          <button><a href="">Create Post</a></button>
+          <%} else {%> <% if (!user.isAdmin) {%>
+          <button><a href="/admin">Become Admin</a></button>
+          <button><a href="/create_post">Create Post</a></button>
+          <% } else {%>
+          <span class="adminButton">Admin</span>
+          <button><a href="/create_post">Create Post</a></button>
+          <% }%> <% } %>
+
           <button><a href="/logout">Logout</a></button>
         </div>
 
@@ -35,26 +43,32 @@
           <hr />
           <div class="dahsboardPosts">
             <section class="posts">
-              <% if (messages.length === 0) {%>
+              <% if (user.membership && messages.length === 0) {%>
               <h2 class="emptyPostDashboard">No posts yet</h2>
-              <% } else { %> <% messages.forEach(function(message) {%>
+              <% } else if (!user.membership) {%>
+              <h2 class="emptyPostDashboard">You must be a member to post</h2>
+              <%} else { %> <% messages.forEach(function(message) {%>
               <div class="postDashboard">
                 <div class="postInfo">
                   <img src="/images/profile.jpeg" alt="" />
                   <div class="username_date">
-                    <% if (typeof user === 'undefined') { %>
-                    <h2>Anonymous</h2>
-                    <p>Membership required to see the user</p>
-                    <% } else {%>
                     <h2><%= message.user.username %></h2>
                     <p><%= message.formatted_date %></p>
-                    <% }%>
                   </div>
                 </div>
                 <div class="postText">
                   <h2><%= message.title %></h2>
                   <p><%= message.text %></p>
                 </div>
+                <% if (user.isAdmin) {%>
+                <div class="adminBtn">
+                  <button>
+                    <a href="/dashboard"
+                      ><img src="/images/trash.svg" alt="trash icon"
+                    /></a>
+                  </button>
+                </div>
+                <% } %>
               </div>
               <% })%> <% }%>
             </section>

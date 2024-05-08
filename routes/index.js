@@ -22,4 +22,12 @@ router.get("/membership", userController.user_membershipForm_get);
 
 router.post("/membership", userController.user_membershipForm_post);
 
+router.get("/admin", userController.user_adminForm_get);
+
+router.post("/admin", userController.user_adminForm_post);
+
+router.get("/create_post", messageController.create_post_form_get);
+
+router.post("/create_post", messageController.create_post_form_post);
+
 module.exports = router;

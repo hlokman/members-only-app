@@ -8,15 +8,15 @@
   </head>
   <body>
     <%- include('./partials/header.ejs') %>
-    <main class="mainMembership">
-      <div class="containerMainMembership">
+    <main class="mainAdmin">
+      <div class="containerMainAdmin">
         <h1>Activate Membership</h1>
-        <form class="membershipForm" method="post" action="/membership">
+        <form class="adminForm" method="post" action="/admin">
           <input
             type="text"
-            name="membershipPass"
-            id="membershipPass"
-            placeholder="Hint: hasta la vista"
+            name="adminPass"
+            id="adminPass"
+            placeholder="Hint: I'll be back."
             required
           />
           <button type="submit">Activate</button>
