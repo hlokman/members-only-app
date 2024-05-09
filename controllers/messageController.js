@@ -4,7 +4,10 @@ const { body, validationResult } = require("express-validator");
 
 exports.index = async function (req, res, next) {
   try {
-    const allMessages = await Message.find({}).populate("user").exec();
+    const allMessages = await Message.find({})
+      .sort({ timestamp: 1 })
+      .populate("user")
+      .exec();
     res.render("index", {
       title: "Homepage",
       messages: allMessages,
@@ -56,3 +59,21 @@ exports.create_post_form_post = [
     }
   },
 ];
+
+exports.user_delete_get = (req, res, next) => {
+  res.render("delete", {
+    title: "Delete Post",
+    user: req.user,
+    userPostId: req.params.id,
+  });
+};
+
+exports.user_delete_post = async (req, res, next) => {
+  try {
+    await Message.findByIdAndDelete(req.params.id);
+    //console.log("req.params: " + req.params.id);
+    res.redirect("/");
+  } catch (err) {
+    console.log(err);
+  }
+};

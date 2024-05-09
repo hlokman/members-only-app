@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <title><%= title %></title>
+  </head>
+  <body>
+    <%- include('./partials/header.ejs') %>
+    <main class="mainDelete">
+      <div class="containerMainDelete">
+        <h1>Delete the post</h1>
+        <form
+          class="deleteForm"
+          method="post"
+          action="<%= '/delete/' + userPostId %>"
+        >
+          <label for="delete">Are you sure to delete the post?</label>
+          <input type="hidden" name="delete" id="delete" value="true" />
+          <button type="submit">Yes</button>
+        </form>
+        <button class="noBtn"><a href="/">No</a></button>
+      </div>
+    </main>
+  </body>
+</html>

@@ -221,7 +221,8 @@ input {
   height: 9rem;
 }
 
-button[type="submit"] {
+button[type="submit"],
+.mainDelete button {
   color: white;
   background-color: rgb(103, 103, 255);
   font-weight: 600;
@@ -232,6 +233,17 @@ button[type="submit"] {
   width: 80px;
   height: 25px;
   align-self: center;
+}
+.containerMainDelete {
+  position: relative;
+}
+.mainDelete a {
+  color: white;
+}
+.noBtn {
+  position: absolute;
+  left: 85px;
+  bottom: 5px;
 }
 
 .mainDashboard {
@@ -245,14 +257,16 @@ button[type="submit"] {
 }
 
 .mainMembership,
-.mainAdmin {
+.mainAdmin,
+.mainDelete {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 }
 .containerMainMembership,
-.containerMainAdmin {
+.containerMainAdmin,
+.containerMainDelete {
   width: 75%;
 }
 
@@ -345,6 +359,7 @@ button[type="submit"] {
 }
 
 .membershipForm > input,
-.adminForm > input {
+.adminForm > input,
+.deleteForm > input {
   display: block;
 }

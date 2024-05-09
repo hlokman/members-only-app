@@ -33,7 +33,7 @@
           <% if (user && user.isAdmin) {%>
           <div class="adminBtn">
             <button>
-              <a href="/dashboard"
+              <a href="<%= '/delete/' + message._id %>"
                 ><img src="/images/trash.svg" alt="trash icon"
               /></a>
             </button>
